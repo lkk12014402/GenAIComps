@@ -1,0 +1,8 @@
+diffusers[torch]
+accelerate
+transformers 
+safetensors 
+omegaconf 
+pytorch_lightning
+xformers
+optimum-habana

@@ -1,0 +1,141 @@
+{
+  "last_node_id": 5,
+  "last_link_id": 3,
+  "nodes": [
+    {
+      "id": 4,
+      "type": "SaveImage",
+      "pos": {
+        "0": 990.6666870117188,
+        "1": 147.33334350585938
+      },
+      "size": {
+        "0": 315,
+        "1": 270
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 2
+        }
+      ],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "ComfyUI"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "DiffusersPipelineGaudi",
+      "pos": {
+        "0": 485,
+        "1": 109
+      },
+      "size": {
+        "0": 400,
+        "1": 294
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL_PATH",
+          "link": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            2
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DiffusersPipelineGaudi"
+      },
+      "widgets_values": [
+        849031358477887,
+        "randomize",
+        20,
+        8,
+        "euler_ancestral_discrete",
+        512,
+        512,
+        "beautiful scenery nature glass bottle landscape, purple galaxy bottle,",
+        "text, watermark"
+      ]
+    },
+    {
+      "id": 5,
+      "type": "DiffusersModelPath",
+      "pos": {
+        "0": 87,
+        "1": 153
+      },
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL_PATH",
+          "type": "MODEL_PATH",
+          "links": [
+            3
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DiffusersModelPath"
+      },
+      "widgets_values": [
+        "stable-diffusion-v1-5"
+      ]
+    }
+  ],
+  "links": [
+    [
+      2,
+      3,
+      0,
+      4,
+      0,
+      "IMAGE"
+    ],
+    [
+      3,
+      5,
+      0,
+      3,
+      0,
+      "MODEL_PATH"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.8264462809917354,
+      "offset": [
+        -35.55337402343737,
+        65.87995300292977
+      ]
+    }
+  },
+  "version": 0.4
+}
