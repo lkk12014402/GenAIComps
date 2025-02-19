@@ -41,11 +41,12 @@ def initialize():
             if not args.token:
                 args.token = os.getenv("HF_TOKEN")
             if args.device == "hpu":
+                from optimum.habana.transformers.gaudi_configuration import GaudiConfig
                 kwargs.update(
                     {
                         "use_habana": True,
                         "use_hpu_graphs": args.use_hpu_graphs,
-                        "gaudi_config": "Habana/stable-diffusion",
+                        "gaudi_config": GaudiConfig(use_fused_adam=True, use_fused_clip_norm=True, use_torch_autocast=True),
                         "token": args.token,
                     }
                 )
@@ -87,13 +88,24 @@ def initialize():
 )
 @register_statistics(names=["opea_service@text2image"])
 def text2image(input: SDInputs):
+    print(input)
     initialize()
     start = time.time()
     prompt = input.prompt
     num_images_per_prompt = input.num_images_per_prompt
+    num_inference_steps = input.num_inference_steps
+    guidance_scale = input.guidance_scale
+    width = input.width
+    height = input.height
 
     generator = torch.manual_seed(args.seed)
-    images = pipe(prompt, generator=generator, num_images_per_prompt=num_images_per_prompt).images
+    images = pipe(prompt,
+        generator=generator,
+        num_images_per_prompt=num_images_per_prompt,
+        num_inference_steps=num_inference_steps,
+        guidance_scale=guidance_scale,
+        width=width,
+        height=height).images
     image_path = os.path.join(os.getcwd(), prompt.strip().replace(" ", "_").replace("/", ""))
     os.makedirs(image_path, exist_ok=True)
     results = []

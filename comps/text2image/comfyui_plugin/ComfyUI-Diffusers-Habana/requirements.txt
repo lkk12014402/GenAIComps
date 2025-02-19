@@ -1,8 +1,7 @@
 diffusers[torch]
 accelerate
-transformers 
-safetensors 
-omegaconf 
-pytorch_lightning
-xformers
-optimum-habana
+transformers
+safetensors
+omegaconf
+optimum-habana==1.15.0
+# git+https://github.com/huggingface/optimum-habana.git@@1.15.0
