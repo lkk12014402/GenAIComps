@@ -377,7 +377,12 @@ class DiffusersPipelineEndpointGaudi:
         print(negative)
 
         req = {"prompt": positive,
+            "negative_prompt": negative,
             "num_images_per_prompt": 1,
+            "num_inference_steps": steps,
+            "guidance_scale": cfg,
+            "height": height,
+            "width": width
         }
 
         try:
