@@ -288,6 +288,7 @@ class LVMVideoDoc(BaseDoc):
 
 class SDInputs(BaseDoc):
     prompt: str
+    negative_prompt: str
     num_images_per_prompt: int = 1
     num_inference_steps: int = 20
     guidance_scale: float = 7.5

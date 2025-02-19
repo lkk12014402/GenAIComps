@@ -92,6 +92,7 @@ def text2image(input: SDInputs):
     initialize()
     start = time.time()
     prompt = input.prompt
+    negative_prompt = input.negative_prompt
     num_images_per_prompt = input.num_images_per_prompt
     num_inference_steps = input.num_inference_steps
     guidance_scale = input.guidance_scale
@@ -100,6 +101,7 @@ def text2image(input: SDInputs):
 
     generator = torch.manual_seed(args.seed)
     images = pipe(prompt,
+        negative_prompt=negative_prompt,
         generator=generator,
         num_images_per_prompt=num_images_per_prompt,
         num_inference_steps=num_inference_steps,
